@@ -1,5 +1,5 @@
 from src import app
 
 @app.route('/')
-def index():
-    return 'Index ...'
+def home():
+    return 'Home page'
