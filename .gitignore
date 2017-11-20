@@ -1,4 +1,3 @@
 *.pyc
 *.egg*
 docker/data/*
-migrations/
