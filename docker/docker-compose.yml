@@ -1,0 +1,13 @@
+version: '3.1'
+
+services:
+  db:
+    image: postgres:10.1-alpine
+    ports:
+      - "5432:5432"
+    environment:
+      - POSTGRES_PASSWORD=Mxwp78RB4rcjKa
+      - POSTGRES_USER=chatter
+      - POSTGRES_DB=timesmedia
+    volumes:
+      - ./data:/var/lib/postgresql/data
