@@ -10,6 +10,7 @@ setup(
         'alembic',
         'psycopg2',
         'flask-migrate',
-        'flask-script'
+        'flask-script',
+        'flask-bcrypt'
     ],
 )
