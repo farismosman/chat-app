@@ -26,3 +26,4 @@ from models.chat import Chat
 
 import src.views.home
 import src.views.user
+import src.views.chat

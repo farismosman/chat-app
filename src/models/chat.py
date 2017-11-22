@@ -12,4 +12,13 @@ class Chat(db.Model):
         self.created_by = created_by
 
     def __repr__(self):
-        return '<Chat %s>'.format(self.text)
+        return '<Chat %s>'.format(self.id)
+
+    @staticmethod
+    def create(user_id):
+        chat = Chat(user_id)
+        db.session.add(chat)
+        db.session.commit()
+
+        return chat.id
+

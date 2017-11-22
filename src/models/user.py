@@ -55,5 +55,6 @@ class User(db.Model):
         else:
             raise Exception('Unauthorized')
 
+    @staticmethod
     def is_authorized(auth_token):
         return True if User.decode(auth_token) else False

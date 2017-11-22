@@ -15,11 +15,7 @@ def register():
 
     token = User.register(first_name, last_name, username, password)
 
-    return Response(
-            json.dumps({'auth_token': token}),
-            status=201,
-            mimetype='application/json'
-        )
+    return Response(json.dumps({'auth_token': token}), status=201, mimetype='application/json')
 
 @app.route('/user/login', methods=['POST'])
 def login():
@@ -30,8 +26,4 @@ def login():
 
     token = User.authenticate(username, password)
 
-    return Response(
-            json.dumps({'auth_token': token}),
-            status=200,
-            mimetype='application/json'
-        )
+    return Response(json.dumps({'auth_token': token}), status=200, mimetype='application/json')
