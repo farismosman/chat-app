@@ -17,6 +17,7 @@ POSTGRES = {
 
 app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://%(user)s:%(pw)s@%(host)s:%(port)s/%(db)s' % POSTGRES
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+app.config['SECRET_KEY'] = '\xb8\xd6F\x15"\x8f\xe7\xb0\xd2\xfedk\x02\xcc#\xea\xa0\xf4\x91\xe7W3\xbev'
 db.init_app(app)
 
 from models.user import User

@@ -1,7 +1,7 @@
 import json
-from src import app, db
+from src import app
 from src import User
-from flask import request, Response
+from flask import request, Response, json
 
 
 @app.route('/user/register', methods=['POST'])
@@ -13,7 +13,25 @@ def register():
     username = data['username']
     password = data['password']
 
-    user = User(first_name, last_name, username, password)
-    db.session.add(user)
+    token = User.register(first_name, last_name, username, password)
 
-    return Response(status=201, mimetype='application/json')
+    return Response(
+            json.dumps({'auth_token': token}),
+            status=201,
+            mimetype='application/json'
+        )
+
+@app.route('/user/login', methods=['POST'])
+def login():
+    data = json.loads(request.data)
+
+    username = data['username']
+    password = data['password']
+
+    token = User.authenticate(username, password)
+
+    return Response(
+            json.dumps({'auth_token': token}),
+            status=200,
+            mimetype='application/json'
+        )

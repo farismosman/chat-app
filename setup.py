@@ -11,6 +11,7 @@ setup(
         'psycopg2',
         'flask-migrate',
         'flask-script',
-        'flask-bcrypt'
+        'flask-bcrypt',
+        'pyjwt'
     ],
 )
