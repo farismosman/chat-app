@@ -22,3 +22,11 @@ class Chat(db.Model):
 
         return chat.id
 
+
+    @staticmethod
+    def get(chat_id, user_id):
+        chat = Chat.query.filter_by(id=chat_id, created_by=user_id).first()
+        if chat:
+            return chat
+
+        raise Exception('No chat found')
