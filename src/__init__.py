@@ -21,8 +21,10 @@ app.config['SECRET_KEY'] = '\xb8\xd6F\x15"\x8f\xe7\xb0\xd2\xfedk\x02\xcc#\xea\xa
 db.init_app(app)
 
 from models.user import User
-from models.message import Message
+from models.message import Message, MessageJSONEncoder
 from models.chat import Chat
+
+app.json_encoder = MessageJSONEncoder
 
 import src.views.home
 import src.views.user

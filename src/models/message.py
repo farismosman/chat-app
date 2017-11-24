@@ -1,5 +1,7 @@
 from src import db
 from datetime import datetime
+from flask.json import JSONEncoder
+
 
 class Message(db.Model):
     __tablename__ = 'messages'
@@ -11,10 +13,29 @@ class Message(db.Model):
     created_by = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False)
     created_at = db.Column(db.DateTime, nullable=False, default=datetime.utcnow)
 
-    def __init__(self, text, chat, created_by):
+    def __init__(self, text, chat_id, created_by):
         self.text = text
-        self.chat = chat
+        self.chat_id = chat_id
         self.created_by = created_by
 
     def __repr__(self):
         return '<Message %s>'.format(self.text)
+
+    @staticmethod
+    def create(text, chat_id, user_id):
+        message = Message(text, chat_id, user_id)
+        db.session.add(message)
+        db.session.commit()
+
+
+class MessageJSONEncoder(JSONEncoder):
+    def default(self, obj):
+        if isinstance(obj, Message):
+            return {
+                'id': obj.id,
+                'text': obj.text,
+                'created_by': obj.created_by,
+                'created_at': obj.created_at
+            }
+
+        return super(MessageJSONEncoder, self).default(obj)
