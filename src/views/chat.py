@@ -3,7 +3,7 @@ from src import User, Chat, Message
 from flask import request, Response, json
 
 
-@app.route('/chat/start', methods=['POST'])
+@app.route('/chat', methods=['POST'])
 def create():
     auth_token = request.headers['Authorization']
     authorized = User.is_authorized(auth_token)

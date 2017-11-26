@@ -12,6 +12,7 @@ class Message(db.Model):
     chat = db.relationship('Chat', backref=db.backref('messages', lazy=True))
     created_by = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False)
     created_at = db.Column(db.DateTime, nullable=False, default=datetime.utcnow)
+    db.CheckConstraint('created_by == chat.created_by OR created_by chat.participant')
 
     def __init__(self, text, chat_id, created_by):
         self.text = text
