@@ -1,4 +1,4 @@
-from src import db
+from src import db, Chat
 from datetime import datetime
 from flask.json import JSONEncoder
 

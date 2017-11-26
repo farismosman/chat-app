@@ -10,7 +10,10 @@ def create():
 
     if authorized:
         user_id = User.decode(auth_token)
-        chat_id = Chat.create(user_id)
+        data = json.loads(request.data)
+        participant = data['participant']
+
+        chat_id = Chat.create(user_id, participant)
         body = json.dumps({'chat_id': chat_id})
 
         return Response(body, status=201, mimetype='application/json')
